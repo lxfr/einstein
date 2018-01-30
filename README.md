@@ -1,5 +1,7 @@
 # Полнотекстовый поиск через Elasticsearch + Yii2 с учетом морфологии и транслита
 
+![Image alt](https://github.com/lxfr/einstein/raw/master/image.png)
+
 ## Включает в себя:
 Elasticsearch 5.4 + плагин "анализатор морфологии",
 Yii 2 Base Project,
