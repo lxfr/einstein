@@ -33,15 +33,15 @@ Postgres
 
 ## Интересные команды:
 * docker-compose up -d
- - поднять проект
+поднять проект
 * docker-compose down
- - потушить проект
+потушить проект
 * docker logs einstein-composer
- - проверить логи composer-a
+проверить логи composer-a
 * curl 127.0.0.1:9200/storage/_search?pretty
- - показать все записи в индексе ElasticSearch
+показать все записи в индексе ElasticSearch
 * curl -XDELETE http://127.0.0.1:9200/*
- - очистить индекс ElasticSearch
+очистить индекс ElasticSearch
 
 ## Примечание
 Если у вас есть желание помимо чистки индекса в ElasticSearch грохнуть все записи в базе, а также обнулить их autoincrement поля, можете в adminer'e дать sql команду:
@@ -60,3 +60,5 @@ git
 
 Сборка протестирована на OS Debian Linux.
 PHP может отправлять письма через mail(), но это не важно и идет бонусом данной сборки.
+
+Создано тут - http://www.fdev.biz
