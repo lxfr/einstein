@@ -1,0 +1,1 @@
+FROM composer/composer:php7

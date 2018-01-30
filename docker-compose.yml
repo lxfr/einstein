@@ -1,0 +1,79 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    container_name: "${NAME}-postgres"
+    environment:
+      - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+      - "POSTGRES_DB=${POSTGRES_DB}"
+      - "POSTGRES_USER=${POSTGRES_USER}"
+    ports:
+      - "5432:5432"
+    networks:
+      - webnet
+    restart: always
+    volumes:
+    - ./postgres_data:/var/lib/postgresql/data
+    - ./docker/postgres:/docker-entrypoint-initdb.d
+  adminer:
+    container_name: "${NAME}-adminer"
+    image: adminer
+    restart: always
+    ports:
+      - "${ADMINER_PORT}:8080"
+    links:
+      - "postgres:db"
+    networks:
+      - webnet
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: "${NAME}-nginx"
+    volumes:
+      - "./${APP_DIR}:/app"
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./docker/logs/nginx:/var/log/nginx
+    restart: always
+    ports:
+      - "${EXTERNAL_WEB_PORT}:80"
+    networks:
+      - webnet
+  php:
+    build:
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - "./${APP_DIR}:/app"
+    restart: always
+    container_name: "${NAME}-php"
+    networks:
+      - webnet
+    links:
+      - "postgres:db"
+  composer:
+    build:
+      context: ./
+      dockerfile: ./docker/composer/Dockerfile
+    restart: 'no'
+    container_name: "${NAME}-composer"
+    command: install --prefer-dist --dev
+    volumes:
+      - "./${APP_DIR}:/app"
+    networks:
+      - webnet
+  elastic:
+    build:
+      context: ./
+      dockerfile: ./docker/elastic/Dockerfile
+    container_name: "${NAME}-elastic"
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - "discovery.type=single-node"
+      - "xpack.security.enabled=false"
+    networks:
+      - webnet
+networks:
+  webnet:
