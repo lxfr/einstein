@@ -64,10 +64,10 @@ ALTER sequence complex_id_seq RESTART WITH 1;
 ALTER sequence knowledge_id_seq RESTART WITH 1;
 
 ## P.S. для работы требуются:
-docker-ce
-docker-compose (с поддержкой VERSION 3)
-curl (для работы с CURL напрямую с ElasticSearch)
-git
+* docker-ce
+* docker-compose (с поддержкой VERSION 3)
+* curl (для работы с CURL напрямую с ElasticSearch)
+* git
 
 Сборка протестирована на OS Debian Linux.
 PHP может отправлять письма через mail(), но это не важно и идет бонусом данной сборки.
