@@ -1,11 +1,11 @@
 # Полнотекстовый поиск через Elasticsearch + Yii2 с учетом морфологии и транслита
 
 ## Включает в себя:
-Elasticsearch 5.4 + плагин "анализатор морфологии"
-Yii 2 Base Project
-Composer
-Nginx
-PHP 7
+Elasticsearch 5.4 + плагин "анализатор морфологии",
+Yii 2 Base Project,
+Composer,
+Nginx,
+PHP 7,
 Postgres
 
 ## Для чего нужна?
